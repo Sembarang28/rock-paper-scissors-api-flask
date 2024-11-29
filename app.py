@@ -11,7 +11,7 @@ model = keras.models.load_model("model.h5")
 
 @app.route("/upload", methods=["POST"])
 def upload():
-    apikey = request.headers.get('apikey')
+    # apikey = request.headers.get('apikey')
 
     if "image" not in request.files:
         return jsonify({"error": "Missing required request"})
@@ -19,15 +19,6 @@ def upload():
     image_file = request.files["image"]
     image_file.save("img.jpg")
     path = "img.jpg"
-
-    # if classes[0][0]==1:
-    #   print('paper')
-    # elif classes[0][1]==1:
-    #   print('rock')
-    # elif classes[0][2]==1:
-    #   print('scissors')
-    # else:
-    #   print('unknown')
 
     try:
         img = image.load_img(path, target_size=(100,150))
